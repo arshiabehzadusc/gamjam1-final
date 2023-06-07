@@ -29,14 +29,24 @@ public class TurnScript : MonoBehaviour
                 unplayed = false;
             }
         }
-        else 
+        else if (currentlayer == 2)
         {
-            if ((unplayed) && (gameBoard.GetComponent<GameScript>().indexList[currentIndex-1] > 0))
+            if ((unplayed) && (gameBoard.GetComponent<GameScript>().indexList[currentIndex - 1] > 0))
+            {
+                int index = gameBoard.GetComponent<GameScript>().PlayerTurn();
+                spriteRenderer.sprite = images[index];
+                gameBoard.GetComponent<GameScript>().secindexList[currentIndex - 1] = 1;
+                unplayed = false;
+            }
+        }
+        else {
+            if ((unplayed) && (gameBoard.GetComponent<GameScript>().secindexList[currentIndex - 1] > 0))
             {
                 int index = gameBoard.GetComponent<GameScript>().PlayerTurn();
                 spriteRenderer.sprite = images[index];
                 unplayed = false;
             }
+
         }
     }
 
